@@ -18,6 +18,10 @@ if (process.argv.length < 3) {
 
 var filePath = path.resolve(process.cwd(), process.argv[2])
 
+if (!process.stdout.isTTY) {
+  pretty = function (x) { return x; }
+}
+
 fs.readFile(filePath, function (err, data) {
   marky(data.toString(), function(err, $){
     if (err) throw err;
